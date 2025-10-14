@@ -1,58 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1 class="my_task"><i class="fa-solid fa-check-circle"></i>My Tasks</h1>
-            <p class="date">Sunday</p>
-        </header>
-        <div class="add_task">
-            <input type="text" id="inputTask" class="input" placeholder="What do you want to do">
-            <button class="submit_button" id="addTaskButton"><i class="fa-solid fa-plus"></i></button>
-        </div>
-        <div class="filter">
-            <span class="All active">All</span>
-            <span class="Active">Active</span>
-            <span class="Complete">Complete</span>
-        </div>
+const inputTask = document.getElementById("inputTask");
+const addTaskButton = document.getElementById("addTaskButton");
+const todoList = document.getElementById("todoList");
+const emptyState = document.getElementById("emptyState");
+const itemsLeft = document.getElementById("itemsLeft");
+const filterButtons = document.querySelectorAll(".filter span");
+const clearBtn = document.querySelector(".footer_button");
 
-        <div class="todo_container">
-            <ul class="todo_list hidden_list" id="todoList">
-                <!-- <li class="todo_item">
-                    <label class="checkbox_container">
-                        <input type="checkbox" class="todo_checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <span class="todo_list_text">Buy me a coffee!</span>
-                    <button class="delete_button"><i class="fa-solid fa-times"></i></button>
-                </li> -->
-            </ul>
 
-            <div class="empty_state hidden_empty" id="emptyState">
-                <i class="fa-solid fa-clipboard-list"></i>
-                <span>No task here yet</span>
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
-            </div>
 
-        </div>
+function saveToLocal() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
 
-        <footer>
-            <p class="footer_p" id="itemsLeft">0 item left</p>
-            <button class="footer_button">Clear completed</button>
-        </footer>
 
-    </div>
-    
-</body>
-</html>
+function addTask() {
+    const taskText = inputTask.value.trim();
+    if (taskText === "") return;
 
-<script src="todo.js"></script>
+    const newTask = {
+        id: Date.now(),
+        text: taskText,
+        completed: false
+    };
+
+    todos.push(newTask);
+    inputTask.value = "";
+    saveToLocal();
+    renderList(getActiveFilter());
+}
+
+
+inputTask.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
+
+
+addTaskButton.addEventListener("click", addTask);
+
+
+function renderList(filter = "all") {
+    todoList.innerHTML = "";
+
+    let filteredTodos = todos;
+    if (filter === "active") {
+        filteredTodos = todos.filter(t => !t.completed);
+    } else if (filter === "complete") {
+        filteredTodos = todos.filter(t => t.completed);
+    }
+
+
+    if (filteredTodos.length === 0) {
+        emptyState.style.display = "flex";
+    } else {
+        emptyState.style.display = "none";
+    }
+
+
+    filteredTodos.forEach(task => {
+        const li = document.createElement("li");
+        li.classList.add("todo_item");
+
+        li.innerHTML = `
+            <label class="checkbox_container">
+                <input type="checkbox" class="todo_checkbox" ${task.completed ? "checked" : ""}>
+                <span class="checkmark"></span>
+            </label>
+            <span class="todo_list_text ${task.completed ? "completed" : ""}">${task.text}</span>
+            <button class="delete_button"><i class="fa-solid fa-times"></i></button>
+        `;
+
+
+        const checkbox = li.querySelector(".todo_checkbox");
+        checkbox.addEventListener("change", () => toggleTask(task.id));
+
+        const deleteBtn = li.querySelector(".delete_button");
+        deleteBtn.addEventListener("click", () => deleteTask(task.id));
+
+        todoList.appendChild(li);
+    });
+
+    updateItemsLeft();
+}
+
+
+function toggleTask(id) {
+    const task = todos.find(t => t.id === id);
+    if (task) {
+        task.completed = !task.completed;
+        saveToLocal();
+        renderList(getActiveFilter());
+    }
+}
+
+
+function deleteTask(id) {
+    todos = todos.filter(t => t.id !== id);
+    saveToLocal();
+    renderList(getActiveFilter());
+}
+
+function updateItemsLeft() {
+    const activeCount = todos.filter(t => !t.completed).length;
+    itemsLeft.textContent = `${activeCount} item${activeCount !== 1 ? "s" : ""} left`;
+}
+
+
+filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+       
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.textContent.toLowerCase();
+        renderList(filter);
+    });
+});
+
+function getActiveFilter() {
+    const activeBtn = document.querySelector(".filter .active");
+    if (!activeBtn) return "all";
+    return activeBtn.textContent.toLowerCase();
+}
+
+
+clearBtn.addEventListener("click", () => {
+    todos = todos.filter(t => !t.completed);
+    saveToLocal();
+    renderList(getActiveFilter());
+});
+
+renderList(getActiveFilter());
