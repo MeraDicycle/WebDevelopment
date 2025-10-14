@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="my_task"><i class="fa-solid fa-check-circle"></i>My Tasks</h1>
+            <p class="date">Sunday</p>
+        </header>
+        <div class="add_task">
+            <input type="text" id="inputTask" class="input" placeholder="What do you want to do">
+            <button class="submit_button" id="addTaskButton"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div class="filter">
+            <span class="All active">All</span>
+            <span class="Active">Active</span>
+            <span class="Complete">Complete</span>
+        </div>
+
+        <div class="todo_container">
+            <ul class="todo_list hidden_list" id="todoList">
+                <!-- <li class="todo_item">
+                    <label class="checkbox_container">
+                        <input type="checkbox" class="todo_checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="todo_list_text">Buy me a coffee!</span>
+                    <button class="delete_button"><i class="fa-solid fa-times"></i></button>
+                </li> -->
+            </ul>
+
+            <div class="empty_state hidden_empty" id="emptyState">
+                <i class="fa-solid fa-clipboard-list"></i>
+                <span>No task here yet</span>
+
+            </div>
+
+        </div>
+
+        <footer>
+            <p class="footer_p" id="itemsLeft">0 item left</p>
+            <button class="footer_button">Clear completed</button>
+        </footer>
+
+    </div>
+    
+</body>
+</html>
+
+<script src="todo.js"></script>
