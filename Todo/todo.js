@@ -6,6 +6,8 @@ const emptyState = document.getElementById("emptyState");
 const itemsLeft = document.getElementById("itemsLeft");
 const filterButtons = document.querySelectorAll(".filter span");
 const clearBtn = document.querySelector(".footer_button");
+const dateElement = document.getElementById("dataElement");
+
 
 
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
@@ -125,6 +127,25 @@ function getActiveFilter() {
     if (!activeBtn) return "all";
     return activeBtn.textContent.toLowerCase();
 }
+
+// function setDate() {
+//   const options = { weekday: "long", month: "short", day: "numeric" };
+//   const today = new Date();
+//   dateElement.textContent = today.toLocaleDateString("en-US", options);
+// }
+
+
+function updateDate() {
+  
+
+  const now = new Date(); // 获取当前时间
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = now.toLocaleDateString('en-US', options);
+
+  dateElement.textContent = formattedDate;
+}
+
+updateDate(); // 页面加载时运行一次
 
 
 clearBtn.addEventListener("click", () => {
