@@ -1,0 +1,178 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: rgb(253, 109, 37);
+    --light: rgb(255, 251, 240);
+}
+
+
+body {
+    background-color: rgb(255, 251, 240);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    max-width: 600px;
+    border-color:  white;
+    background-color: white;
+    border-radius: 16px;
+    margin-top: 100px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 20px;
+    color: rgb(253, 109, 37);
+
+}
+.small_title{
+    margin: 0px;
+    color: gray;
+}
+
+button {
+    margin: 20px;
+    padding: 8px 12px;
+    font-size: large;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+h2 {
+    margin: 20px;
+}
+
+.tips {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+
+}
+
+.question_count {
+
+    color: gray;
+}
+
+.score_count {
+    color: gray;
+    
+}
+
+
+.selection {
+    width: 80%;
+}
+
+.abcd {
+    list-style-type: none;  /* 去掉点 */
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.abcd li {
+    color: black;
+    background-color: var(--light);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* 悬停效果 */
+.abcd li:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: scale(1.02);
+}
+
+/* 点击时的轻微阴影 */
+.abcd li:active {
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+
+.div_inner_result {
+    margin: 20px;
+    margin-bottom: 0px;
+    padding: 10px 12px;
+    background-color: var(--light);
+    border-radius: 8px;
+    display: flex;  
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+.p_inner_encouraging {
+    color: var(--primary);
+    font-size: large;
+    margin-top: 10px;
+    
+
+}
+
+
+.progress-bar {
+  width: 80%;
+  height: 10px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #fd6d25, #ffb067);
+  transition: width 0.3s;
+}
+
+
+
+
+
+
+
+/* #screen_start{
+    display: none;
+
+}
+
+#screen_quiz{
+    display: none;
+}
+
+
+#screen_result {
+    display: none;
+} */
+
+.screen {
+    display: none;
+}
+
+.active {
+    display: flex;
+}
