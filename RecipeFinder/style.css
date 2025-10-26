@@ -1,0 +1,321 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+
+:root {
+  --primary: #ff7e5f;
+  --primary-dark: #eb5e41;
+  --primary-light: #ffb199;
+  --secondary: #0ba360;
+  --text-dark: #333333;
+  --text-light: #f8f9fa;
+  --background: #ffffff;
+  --background-light: #f8f9fa;
+  --card-bg: #ffffff;
+  --border-radius: 8px;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: var(--background);
+    max-width: 900px;
+
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 500;
+    
+}
+
+header .fa-solid{
+    margin-right: 20px;
+}
+
+header p {
+    color: var(--text-dark);
+}
+
+.data-from {
+    margin-top:1.5rem;
+}
+
+.the-meal-db{
+    color: var(--primary);
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.search-container{
+    margin-top: 1.1rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+
+.search-container input[type="text"]{
+    flex: 1;
+    /* height: 2rem; */
+    padding: 0.6rem;
+    border: 2px solid var(--background-light);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    outline: none;
+}
+
+.search-container input[type="text"]:focus {
+    border-color: var(--primary);
+    background-color: var(--background-dark);
+}
+
+
+.search-container button {
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    color: var(--text-light);
+    background-color: var(--primary);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    cursor: pointer; 
+
+}
+
+.search-container button:hover {
+    background-color: var(--primary-dark);
+}
+
+h3 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.error-result {
+    background-color: #ffeae3;
+    color: var(--primary-dark);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-align: center;
+    border: 1px solid var(--primary-dark);
+
+}
+
+
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 3rem;
+    /* padding: 1rem; */
+}
+
+.meal {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 2px solid var(--background-light);
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.meal:hover {
+    transform: translateY(-8px);
+    
+}
+
+.meal img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+
+}
+
+.meal-info {
+    padding-left: 12px;
+
+}
+
+.meal-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    
+}
+
+.meal-category {
+    background-color: var(--primary-light);
+    font-size: 0.8rem;
+    width: max-content;
+    padding: 4px 10px;
+    border-radius: 16px;  
+}
+
+.back-button {
+    margin: 2rem 2px;
+    padding: 4px 8px;
+    border: 1px solid var(--primary);
+    background-color: var(--background);
+    color: var(--primary);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    cursor: pointer; 
+
+}
+
+.back-button i{
+    margin-right: 4px;
+}
+
+.back-button:hover {
+    color: white;
+    background-color: var(--primary);
+
+}
+
+.meal-details-content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.meal-details-content img {
+    max-width: 400px;
+    width: 60%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    
+}
+
+.meal-details-title {
+    color: var(--primary);
+    margin: 12px auto;
+
+}
+
+.meal-details-category {
+    background-color: var(--primary-light);
+    font-size: 0.8rem;
+    width: max-content;
+    padding: 4px 12px;
+    border-radius: 16px;  
+}
+
+/* .meal-details-instructions h3 {
+
+    text-align: left;
+} */
+
+/* .meal-details-ingredients {
+    align-self: flex-start;
+    text-align: left;
+} */
+
+.meal-details-ingredients h3{
+    text-align: left;
+}
+
+.ingredients-list {
+    list-style-type: none;
+    /* color: var(--primary); */
+    
+    
+   
+}
+
+.ingredients-list li {
+    margin: 6px;
+    background-color: var(--background-light);
+    border-radius: 4px;
+    padding: 8px;
+    /* font-color   */
+}   
+
+.ingredients-list i {
+    color: var(--secondary);
+    margin-right: 8px;
+}
+
+.youtube-link {
+    padding: 6px 8px;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    margin: 1.1rem;
+    
+    
+}
+
+.youtube-link i {
+    margin-right: 8px;
+}
+
+@media(max-width:600px) {
+    .search-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .results {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    
+}
+
+
+.hidden {
+    display: none;
+}
+
+.mealDetails .hidden {
+    display: none
+}
+
+
+
+
+
+
+
