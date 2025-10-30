@@ -13,7 +13,7 @@ const LOOKUP_URL = `${BASE_URL}lookup.php?i=`; //根据菜名id，搜菜谱详�
 
 searchBtn.addEventListener("click", searchMeals);
 searchInput.addEventListener("keypress", (e) =>{
-    if(e.key === "enter") searchMeals();
+    if(e.key === "Enter") searchMeals();
 })
 mealsContainer.addEventListener("click", handleMealClick);
 backBtn.addEventListener("click", () => mealDetails.classList.add("hidden"));
